@@ -72,6 +72,18 @@ public class VotesClass extends ClassesBase {
 		);
 	}
 
+	public Votes searchByBill(
+		String bill_id
+	) throws OpenCivicDataException {
+		return api.query(
+			new MethodMap("votes"), 
+			new ArgMap(
+				"bill.id", bill_id
+			), 
+			Votes.class
+		);
+	}
+
 	public Vote detail(String voteId) throws OpenCivicDataException {
 		return api.query(new MethodMap(voteId), null, Vote.class);
 	}

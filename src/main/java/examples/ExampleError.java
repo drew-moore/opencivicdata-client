@@ -36,7 +36,7 @@ public class ExampleError {
 		OpenCivicData.setCache(false);
 		// try a search
 		try {
-			divisionsClass.searchByLatLon(42.3581, -71.0636);
+			divisionsClass.searchByLocation(42.3581, -71.0636);
 		} catch ( OpenCivicDataException e) {
 			System.out.println("Message: " + e.getMessage() );
 			System.out.println("Method: " + e.methodMap );

@@ -42,7 +42,6 @@ public class EventsClass extends ClassesBase {
 	 * Event Search
 	 * This method allows searching by state:
 	 * 
-	 * @param state
 	 * @return {@link Events}
 	 */
 	public Events search(
@@ -71,6 +70,42 @@ public class EventsClass extends ClassesBase {
 				"sort", sort, 
 				"page", page, 
 				"per_page", per_page
+			), 
+			Events.class
+		);
+	}
+	
+	/**
+	 * Event Search
+	 * This method allows searching by state:
+	 * 
+	 * @return {@link Events}
+	 */
+	public Events searchByJurisdiction(
+			String jurisdiction_id	
+	) throws OpenCivicDataException {
+		return api.query(
+			new MethodMap("events"), 
+			new ArgMap(
+				"jurisdiction_id", jurisdiction_id
+			), 
+			Events.class
+		);
+	}
+	
+	/**
+	 * Event Search
+	 * This method allows searching by state:
+	 * 
+	 * @return {@link Events}
+	 */
+	public Events searchByPerson(
+			String participants_id
+	) throws OpenCivicDataException {
+		return api.query(
+			new MethodMap("events"), 
+			new ArgMap(
+				"participants.id", participants_id
 			), 
 			Events.class
 		);

@@ -36,7 +36,7 @@ public class DivisionsClass extends ClassesBase {
 		super();
 	}
 
-	public Divisions searchByLatLon(double lat, double lon) throws OpenCivicDataException {
+	public Divisions searchByLocation(double lat, double lon) throws OpenCivicDataException {
 		return api.query(
 			new MethodMap("divisions"), 
 			new ArgMap("lat", Double.toString(lat), "lon", Double.toString(lon) ), 

@@ -70,6 +70,26 @@ public class PersonClass extends ClassesBase {
 		);
 	}
 
+	public Persons searchByName(
+		String name
+	) throws OpenCivicDataException {
+		return api.query(
+			new MethodMap("people"), 
+			new ArgMap(
+				"name", name
+			), 
+			Persons.class
+		);
+	}
+
+	public Persons search() throws OpenCivicDataException {
+			return api.query(
+				new MethodMap("people"), 
+				null, 
+				Persons.class
+			);
+		}
+
 	public Person detail(String personId) throws OpenCivicDataException {
 		return api.query(new MethodMap(personId), null, Person.class);
 	}

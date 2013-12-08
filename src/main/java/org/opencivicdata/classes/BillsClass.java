@@ -72,6 +72,26 @@ public class BillsClass extends ClassesBase {
 		);
 	}
 
+	public Bills searchByJurisdiction(
+		String jurisdiction_id
+	) throws OpenCivicDataException {
+		return api.query(
+			new MethodMap("bills"), 
+			new ArgMap(
+				"jurisdiction_id", jurisdiction_id
+			), 
+			Bills.class
+		);
+	}
+
+	public Bills search() throws OpenCivicDataException {
+		return api.query(
+			new MethodMap("bills"), 
+			null, 
+			Bills.class
+		);
+	}
+
 	public Bill detail(String billId) throws OpenCivicDataException {
 		return api.query(new MethodMap(billId), null, Bill.class);
 	}

@@ -74,6 +74,29 @@ public class OrganizationsClass extends ClassesBase {
 		);
 	}
 
+	public Organizations searchByJurisdiction(
+		String jurisdiction_id
+	) throws OpenCivicDataException {
+		return api.query(
+			new MethodMap("organizations"), 
+			new ArgMap(
+				"jurisdiction_id", jurisdiction_id 
+			), 
+			Organizations.class
+		);
+	}
+
+
+	public Organizations searchByDivision(String division_id) throws OpenCivicDataException {
+			return api.query(
+				new MethodMap("organizations"), 
+				new ArgMap(
+					"division_id", division_id 
+				), 
+				Organizations.class
+			);
+		}
+
 	public Organization detail(String organizationId) throws OpenCivicDataException {
 		return api.query(new MethodMap(organizationId), null, Organization.class);
 	}

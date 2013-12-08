@@ -71,7 +71,7 @@ public class AllThingsBoston {
 		
 		// Divisions in Boston
 		DivisionsClass divisionsClass = new DivisionsClass();
-		Divisions divisions = divisionsClass.search("42.3581", "-71.0636", null, null, null, null, null);
+		Divisions divisions = divisionsClass.searchByLocation(42.3581, -71.0636);
 		System.out.println("Retrieved " + divisions.results.size() + " divisions of " + divisions.meta.total_count + " from " + jurisdiction.name);
 		System.out.println("divisionId for " + divisions.results.get(1).id + " is " + divisions.results.get(1).display_name );
 		Division division = divisionsClass.detail(divisions.results.get(1).id);
@@ -80,10 +80,10 @@ public class AllThingsBoston {
 		
 		OrganizationsClass organizationsClass = new OrganizationsClass();
 		
-		Organizations organizations = organizationsClass.search(null, null, null, null, null, division.id, null, null, null, null, null, null, null, null);
+		Organizations organizations = organizationsClass.searchByDivision(division.id);
 		System.out.println("Retrieved " + organizations.results.size() + " organizations of " + organizations.meta.total_count + " from jurisdiction " + division.display_name);
 
-		organizations = organizationsClass.search(null, null, null, jurisdiction.id, null, null, null, null, null, null, null, null, null, null);
+		organizations = organizationsClass.searchByJurisdiction(jurisdiction.id);
 		System.out.println("Retrieved " + organizations.results.size() + " organizations of " + organizations.meta.total_count + " from jurisdiction " + jurisdiction.name);
 		System.out.println("First organization is " + organizations.results.get(0).name );
 		
@@ -91,11 +91,11 @@ public class AllThingsBoston {
 		System.out.println("Organization detail name is " + organization.name);
 
 		PersonClass personsClass = new PersonClass();
-		Persons persons = personsClass.search(null, null, null, null, null, null, null, null, null, null, null, null);
+		Persons persons = personsClass.search();
 		System.out.println("Retrieved " + persons.results.size() + " results of " + persons.meta.total_count);
 		System.out.println("First person is " + persons.results.get(0).name );
 
-		persons = personsClass.search(persons.results.get(0).name, null, null, null, null, null, null, null, null, null, null, null);
+		persons = personsClass.searchByName(persons.results.get(0).name);
 		System.out.println("Retrieved " + persons.results.size() + " results of " + persons.meta.total_count);
 		System.out.println("First person is " + persons.results.get(0).name );
 		
@@ -103,10 +103,10 @@ public class AllThingsBoston {
 		System.out.println("Detail for person is that " + person.name + " is member of district " + person.district);
 		
 		EventsClass eventsClass = new EventsClass();
-		Events events = eventsClass.search(null, person.id, null, null, null, null, null, null, null, null);
+		Events events = eventsClass.searchByPerson(person.id);
 		System.out.println(person.name + " has " + events.results.size() + " events");
 		
-		events = eventsClass.search(jurisdiction.id, null, null, null, null, null, null, null, null, null);
+		events = eventsClass.searchByJurisdiction(jurisdiction.id);
 		System.out.println(jurisdiction.name + " has " + events.results.size() + " events");
 		System.out.println("eventId for " + events.results.get(0).id + " is " + events.results.get(0).name );
 
@@ -115,10 +115,10 @@ public class AllThingsBoston {
 		
 		BillsClass billsClass = new BillsClass();
 		
-		Bills bills = billsClass.search(null, null, null, jurisdiction.id, null, null, null, null, null, null, null, null, null);
+		Bills bills = billsClass.searchByJurisdiction(jurisdiction.id);
 		System.out.println("Retrieved " + bills.results.size() + " bills of " + bills.meta.total_count + " from jurisdiction " + jurisdiction.name);
 
-		bills = billsClass.search(null, null, null, null, null, null, null, null, null, null, null, null, null);
+		bills = billsClass.search();
 		System.out.println("Retrieved " + bills.results.size() + " bills of " + bills.meta.total_count);
 		System.out.println("billId is " + bills.results.get(0).id );
 		
@@ -127,7 +127,7 @@ public class AllThingsBoston {
 
 		VotesClass votesClass = new VotesClass();
 		
-		Votes votes = votesClass.search(null, null, null, null, null, null, bill.id, null, null, null, null, null, null);
+		Votes votes = votesClass.searchByBill(bill.id);
 		System.out.println("Retrieved " + votes.results.size() + " votes of " + votes.meta.total_count);
 		System.out.println("voteId is " + votes.results.get(0).id );
 		
